@@ -19,7 +19,6 @@
 pragma solidity 0.4.24;
 pragma experimental ABIEncoderV2;
 
-import "./libs/LibConstants.sol";
 import "./MixinExchangeCore.sol";
 import "./MixinSignatureValidator.sol";
 import "./MixinWrapperFunctions.sol";
@@ -38,12 +37,11 @@ contract Exchange is
     MixinWrapperFunctions
 {
 
-    string constant public VERSION = "2.0.1-alpha";
+    string constant public VERSION = "2.0.0";
 
     // Mixins are instantiated in the order they are inherited
-    constructor (bytes memory _zrxAssetData)
+    constructor ()
         public
-        LibConstants(_zrxAssetData) // @TODO: Remove when we deploy.
         MixinExchangeCore()
         MixinMatchOrders()
         MixinSignatureValidator()
