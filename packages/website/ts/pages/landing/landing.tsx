@@ -9,6 +9,7 @@ import { TopBar } from 'ts/components/top_bar/top_bar';
 import { CallToAction } from 'ts/components/ui/button';
 import { Container } from 'ts/components/ui/container';
 import { Text } from 'ts/components/ui/text';
+import { TypedText } from 'ts/components/ui/typed_text';
 import { Dispatcher } from 'ts/redux/dispatcher';
 import { Deco, Key, Language, ScreenWidths, WebsitePaths } from 'ts/types';
 import { constants } from 'ts/utils/constants';
@@ -41,6 +42,17 @@ interface Project {
 const THROTTLE_TIMEOUT = 100;
 const WHATS_NEW_TITLE = 'V2 of the 0x Protocol is now live!';
 const WHATS_NEW_URL = 'https://blog.0xproject.com/18-ideas-for-0x-relayers-in-2018-80a1498b955f';
+const ROTATING_LIST = [
+    'tokens',
+    'game items',
+    'digital art',
+    'outcomes',
+    'stocks',
+    'derivatives',
+    'loans',
+    'cats',
+    'Everything.',
+];
 
 const relayerProjects: Project[] = [
     {
@@ -168,12 +180,29 @@ export class Landing extends React.Component<LandingProps, LandingState> {
                                 <Text
                                     className="sm-pb2"
                                     fontFamily="Roboto"
+                                    display="inline-block"
                                     fontColor={colors.grey300}
                                     fontWeight={500}
                                     lineHeight="1.2em"
                                     fontSize={isSmallScreen ? '28px' : '36px'}
                                 >
                                     {this.props.translate.get(Key.TopHeader, Deco.Cap)}
+                                    {this.props.translate.getLanguage() === Language.English && (
+                                        <React.Fragment>
+                                            {' '}
+                                            for{' '}
+                                            <TypedText
+                                                fontFamily="Roboto"
+                                                display="inline-block"
+                                                fontColor={colors.white}
+                                                fontWeight={700}
+                                                lineHeight="1.2em"
+                                                fontSize={isSmallScreen ? '28px' : '36px'}
+                                                textList={ROTATING_LIST}
+                                                shouldRepeat={true}
+                                            />
+                                        </React.Fragment>
+                                    )}
                                 </Text>
                                 <Container className="pt3 clearfix sm-mx-auto" maxWidth="390px">
                                     <div className="lg-pr2 md-pr2 lg-col lg-col-6 sm-center sm-col sm-col-12 mb2">
